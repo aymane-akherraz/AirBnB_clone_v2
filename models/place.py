@@ -25,14 +25,14 @@ class Place(BaseModel, Base):
             longitude (float): The longitude of the place.
             amenity_ids (list): A list of Amenity ids.
     """
-
-    place_amenity = Table('place_amenity', Base.metadata,
-                          Column('place_id', String(60),
-                                 ForeignKey('places.id'),
-                                 primary_key=True),
-                          Column('amenity_id', String(60),
-                                 ForeignKey('amenities.id'),
-                                 primary_key=True))
+    if getenv("HBNB_TYPE_STORAGE") == "db":
+        place_amenity = Table('place_amenity', Base.metadata,
+                              Column('place_id', String(60),
+                                     ForeignKey('places.id'),
+                                     primary_key=True),
+                              Column('amenity_id', String(60),
+                                     ForeignKey('amenities.id'),
+                                     primary_key=True))
 
     __tablename__ = "places"
     city_id = Column(String(60), ForeignKey('cities.id'))
