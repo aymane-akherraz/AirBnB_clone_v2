@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """ Creates and distributes an archive to your web servers """
 from fabric.api import *
-from os import os.path
+import os
+from datetime import datetime
+
 
 env.user = 'ubuntu'
 env.hosts = ['52.86.133.238', '52.87.211.253']
