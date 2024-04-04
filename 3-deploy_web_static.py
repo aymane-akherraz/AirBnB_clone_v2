@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Creates and distributes an archive to your web servers """
-from fabric.api import put, run, env, local
+from fabric.api import *
 from os import os.path
 
 
