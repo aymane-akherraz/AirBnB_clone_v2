@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Distributes an archive to your web servers """
-from fabric.api import *
+from fabric.api import put, run, env
 import os
 
 
@@ -26,5 +26,5 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}/ /data/web_static/current'.format(path))
         return True
-    except Exception:
+    except:
         return False
