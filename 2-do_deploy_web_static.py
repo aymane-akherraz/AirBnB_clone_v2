@@ -22,7 +22,7 @@ def do_deploy(archive_path):
     path = "/data/web_static/releases/{}".format(archive_path)
     if run('mkdir -p {}/'.format(path)).failed:
         return False
-    if run('tar -xzf /tmp/{}.tgz -C {}/'.format(archive_path, path)).failed!
+    if run('tar -xzf /tmp/{}.tgz -C {}/'.format(archive_path, path)).failed:
         return False
     if run('rm /tmp/{}.tgz'.format(archive_path)).failed:
         return False
