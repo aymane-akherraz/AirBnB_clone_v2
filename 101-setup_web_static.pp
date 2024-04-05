@@ -4,11 +4,39 @@ package { 'nginx':
   ensure => installed,
 }
 
-file { ['/data',
-  '/data/web_static',
-  '/data/web_static/releases',
-  '/data/web_static/shared',
-  '/data/web_static/releases/test']:
+file { '/data':
+  ensure  => 'directory',
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
+  recurse => true,
+  mode    => '0755',
+}
+
+file { '/data/web_static':
+  ensure  => 'directory',
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
+  recurse => true,
+  mode    => '0755',
+}
+
+file { '/data/web_static/releases':
+  ensure  => 'directory',
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
+  recurse => true,
+  mode    => '0755',
+}
+
+file { '/data/web_static/shared':
+  ensure  => 'directory',
+  owner   => 'ubuntu',
+  group   => 'ubuntu',
+  recurse => true,
+  mode    => '0755',
+}
+
+file { '/data/web_static/releases/test':
   ensure  => 'directory',
   owner   => 'ubuntu',
   group   => 'ubuntu',
@@ -25,7 +53,7 @@ file { '/data/web_static/current':
   target => '/data/web_static/releases/test',
 }
 
-file_line { '':
+file_line { 'adding config':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
   line   => "\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}",
