@@ -8,7 +8,7 @@ file { ['/data',
   '/data/web_static',
   '/data/web_static/releases',
   '/data/web_static/shared',
-  '/data/web_static/releases/test', ]:
+  '/data/web_static/releases/test']:
   ensure  => 'directory',
   owner   => 'ubuntu',
   group   => 'ubuntu',
@@ -28,10 +28,7 @@ file { '/data/web_static/current':
 file_line { '':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
-  line   => 'location /hbnb_static/ {
-                alias /data/web_static/current/;
-                autoindex off;
-            }',
+  line   => "\n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}",
   after  => 'server_name _;',
 }
 
