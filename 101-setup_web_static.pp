@@ -4,46 +4,15 @@ package { 'nginx':
   ensure => installed,
 }
 
-file { '/data':
-  ensure  => 'directory',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  recurse => true,
-  mode    => '0755',
+exec {'test folder':
+  command => '/usr/bin/env mkdir -p /data/web_static/releases/test/',
 }
-
-file { '/data/web_static':
-  ensure  => 'directory',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  recurse => true,
-  mode    => '0755',
+exec {'shared folder':
+  command => '/usr/bin/env mkdir -p /data/web_static/shared/',
 }
-
-file { '/data/web_static/releases':
-  ensure  => 'directory',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  recurse => true,
-  mode    => '0755',
+exec {'chown:':
+  command => '/usr/bin/env chown -R ubuntu:ubuntu /data',
 }
-
-file { '/data/web_static/shared':
-  ensure  => 'directory',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  recurse => true,
-  mode    => '0755',
-}
-
-file { '/data/web_static/releases/test':
-  ensure  => 'directory',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  recurse => true,
-  mode    => '0755',
-}
-
 file { '/data/web_static/releases/test/index.html':
   content => "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHolberton School\n\t</body>\n</html>",
 }

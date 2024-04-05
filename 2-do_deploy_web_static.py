@@ -13,25 +13,17 @@ def do_deploy(archive_path):
 
     if not path.exists(archive_path):
         return False
-
-    if put(archive_path, '/tmp/').failed:
+    try:
+        put(archive_path, '/tmp/')
+        archive_path = archive_path.split('/')[1].strip('.tgz')
+        path = "/data/web_static/releases/{}".format(archive_path)
+        run('mkdir -p {}/'.format(path))
+        run('tar -xzf /tmp/{}.tgz -C {}/'.format(archive_path, path))
+        run('rm /tmp/{}.tgz'.format(archive_path))
+        run('mv {}/web_static/* {}/'.format(path, path))
+        run('rm -rf {}/web_static'.format(path))
+        run('rm -rf /data/web_static/current')
+        run('ln -s {}/ /data/web_static/current'.format(path))
+        return True
+    except:
         return False
-
-    archive_path = archive_path.split('/')[1].strip('.tgz')
-
-    path = "/data/web_static/releases/{}".format(archive_path)
-    if run('mkdir -p {}/'.format(path)).failed:
-        return False
-    if run('tar -xzf /tmp/{}.tgz -C {}/'.format(archive_path, path)).failed:
-        return False
-    if run('rm /tmp/{}.tgz'.format(archive_path)).failed:
-        return False
-    if run('mv {}/web_static/* {}/'.format(path, path)).failed:
-        return False
-    if run('rm -rf {}/web_static'.format(path)).failed:
-        return False
-    if run('rm -rf /data/web_static/current').failed:
-        return False
-    if run('ln -s {}/ /data/web_static/current'.format(path)).failed:
-        return False
-    return True
