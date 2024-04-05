@@ -20,6 +20,11 @@ file { '/data/web_static/releases/test/index.html':
   content => "<html>\n\t<head>\n\t</head>\n\t<body>\n\t\tHolberton School\n\t</body>\n</html>",
 }
 
+file { '/data/web_static/current':
+  ensure => 'link',
+  target => '/data/web_static/releases/test',
+}
+
 file_line { '':
   ensure => 'present',
   path   => '/etc/nginx/sites-available/default',
