@@ -58,7 +58,7 @@
                 <div class="user">
                     <b>Owner: </b>{{ place.user.first_name }} {{ place.user.last_name }}
                 </div>
-                <div class="description">{{ place.description }}</div>
+                <div class="description">{{ place.description|safe }}</div>
             </article>
             {% endfor %}
         </section>

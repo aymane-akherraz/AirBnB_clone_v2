@@ -13,7 +13,6 @@ class Review(BaseModel, Base):
             text (str): The text of the review.
     """
     __tablename__ = "reviews"
-    __table_args__ = {'mysql_collate': 'latin1_swedish_ci'}
     place_id = Column(String(60), ForeignKey('places.id'))
     user_id = Column(String(60), ForeignKey('users.id'))
     text = Column(String(1024), nullable=False)

@@ -15,7 +15,6 @@ class User(BaseModel, Base):
             last_name (str): The last name of the user.
     """
     __tablename__ = 'users'
-    __table_args__ = {'mysql_collate': 'latin1_swedish_ci'}
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
     first_name = Column(String(128), nullable=True)
