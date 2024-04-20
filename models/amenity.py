@@ -12,4 +12,5 @@ class Amenity(BaseModel, Base):
     """
 
     __tablename__ = "amenities"
+    __table_args__ = {'mysql_collate': 'latin1_swedish_ci'}
     name = Column(String(128), nullable=False)

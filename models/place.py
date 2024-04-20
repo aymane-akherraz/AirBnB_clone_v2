@@ -32,9 +32,11 @@ class Place(BaseModel, Base):
                                  primary_key=True),
                           Column('amenity_id', String(60),
                                  ForeignKey('amenities.id'),
-                                 primary_key=True))
+                                 primary_key=True),
+                          mysql_collate='latin1_swedish_ci')
 
     __tablename__ = "places"
+    __table_args__ = {'mysql_collate': 'latin1_swedish_ci'}
     city_id = Column(String(60), ForeignKey('cities.id'))
     user_id = Column(String(60), ForeignKey('users.id'))
     name = Column(String(128), nullable=False)

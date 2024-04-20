@@ -41,8 +41,6 @@ class DBStorage:
                 res = self.__session.query(c).all()
                 for obj in res:
                     k = "{}.{}".format(type(obj).__name__, obj.id)
-                    if hasattr(obj, "_sa_instance_state"):
-                        del obj._sa_instance_state
                     my_dict[k] = obj
         else:
             for c in DBStorage.classes:
@@ -50,8 +48,6 @@ class DBStorage:
                     res = self.__session.query(cls).all()
                     for obj in res:
                         k = "{}.{}".format(type(obj).__name__, obj.id)
-                        if hasattr(obj, "_sa_instance_state"):
-                            del obj._sa_instance_state
                         my_dict[k] = obj
                     break
         return my_dict
@@ -84,6 +80,5 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        """Close scoped session
-        """
-        self.__session.remove()
+        """ Close scoped session """
+        self.__session.close()
