@@ -18,7 +18,8 @@ def list_states():
 @app.teardown_appcontext
 def teardown_db(exception):
     """ Removes the current SQL Session """
-    storage.close()
+    if storage is not None:
+        storage.close()
 
 
 if __name__ == '__main__':
