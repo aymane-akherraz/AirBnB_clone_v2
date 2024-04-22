@@ -16,11 +16,9 @@ def list_states(id=None):
     if id:
         for state in res:
             if state.id == id:
-                return render_template('9-states.html', state=state,
-                                       states=None)
-        return render_template('9-states.html', state=None, states=None)
-    print(res)
-    return render_template('9-states.html', states=res, state=None)
+                return render_template('9-states.html', state=state)
+        return render_template('9-states.html')
+    return render_template('9-states.html', states=res)
 
 
 @app.teardown_appcontext
