@@ -19,6 +19,7 @@ def list_states(id=None):
                 return render_template('9-states.html', state=state,
                                        states=None)
         return render_template('9-states.html', state=None, states=None)
+    print(res)
     return render_template('9-states.html', states=res, state=None)
 
 
