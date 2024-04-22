@@ -18,7 +18,7 @@ def teardown_db(exception):
 def list_states():
     """ List availabale states when requesting /states_list """
 
-    res = storage.all(State).values()
+    res = storage.all(State)
     return render_template('7-states_list.html', states=res)
 
 
